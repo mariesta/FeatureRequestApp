@@ -8,11 +8,81 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <link href="../static/style.css" rel="stylesheet">
+
+    <title>Feature Request App</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">Feature Request App</a>
+    </nav>
 
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Got an idea?</h1>
+          <form>
+            <div class="form-group row">
+              <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputTitle" placeholder="Feature Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputDescription" placeholder="Feature Description">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="client" class="col-sm-2 col-form-label">Client</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="client">
+                  <option selected>Choose a client</option>
+                  <option value="1">Client A</option>
+                  <option value="2">Client B</option>
+                  <option value="3">Client C</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPriority" class="col-sm-2 col-form-label">Client Priority</label>
+              <div class="col-sm-10">
+                <input type="number" min="1" class="form-control" id="inputPriority" placeholder="Priority">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputTargetDate" class="col-sm-2 col-form-label">Target Date</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="inputTargetDate">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="productArea" class="col-sm-2 col-form-label">Product Area</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="productArea">
+                  <option selected>Choose a specific area</option>
+                  <option value="policy">Policies</option>
+                  <option value="billing">Billing</option>
+                  <option value="claim">Claims</option>
+                  <option value="report">Reports</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; Company 2018</p>
+    </footer>
+ 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
