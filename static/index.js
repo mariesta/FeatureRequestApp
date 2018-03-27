@@ -20,11 +20,17 @@ var FeatureviewModel = {
     	// If the form data is valid, post the serialized form data to the web API.
         $(formElement).validate();
         if ($(formElement).valid()) {
-            $.post('/', $(formElement).serialize(), null, "json")
-                .done(function (o) { 
-                    // Add the new product to the view-model.
-                    console.log('success'); 
-                });
+            $.ajax({
+	            url: '/createFeature',
+	            data: $(formElement).serialize(),
+	            type: 'POST',
+	            success: function(response) {
+	                console.log(response);
+	            },
+	            error: function(error) {
+	                console.log(error);
+	            }
+	        });
         }
     }
 };
