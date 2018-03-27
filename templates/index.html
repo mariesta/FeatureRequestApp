@@ -11,6 +11,7 @@
     <link href="../static/style.css" rel="stylesheet">
 
     <title>Feature Request App</title>
+
   </head>
   <body>
     <nav class="navbar navbar-light bg-light">
@@ -21,7 +22,7 @@
       <div class="row">
         <div class="col-12">
           <h1>Got an idea?</h1>
-          <form>
+          <form data-bind="submit: doSomething">
             <div class="form-group row">
               <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
               <div class="col-sm-10">
@@ -84,6 +85,8 @@
     </footer>
  
     <!-- Optional JavaScript -->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
