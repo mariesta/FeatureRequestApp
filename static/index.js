@@ -1,37 +1,43 @@
-var FeatureviewModel = {
+var createFeatureviewModel = {
     name : ko.observable(""),
     description : ko.observable(""),
     clientValues : [
-    	{name: "Client A", id: 1},
-    	{name: "Client B", id: 2},
-    	{name: "Client C", id: 3}
+    	{name: "Client A", id: "A"},
+    	{name: "Client B", id: "B"},
+    	{name: "Client C", id: "C"}
     ],
     selectedClient : ko.observable(1),
     priority : ko.observable(1),
-    target : ko.observable(null),
+    target : ko.observable(moment().format("YYYY-MM-DD")),
     areaValues : [
-    	{name: "Policies", id: "policy"},
-    	{name: "Billings", id: "billing"},
-    	{name: "Claims", id: "claim"},
-    	{name: "Reports", id: "report"}
+    	{name: "Policies", id: "Policies"},
+    	{name: "Billings", id: "Billings"},
+    	{name: "Claims", id: "Claims"},
+    	{name: "Reports", id: "Reports"}
     ],
     selectedArea : ko.observable('policy'),
     doSomething : function(formElement) {
     	// If the form data is valid, post the serialized form data to the web API.
         $(formElement).validate();
         if ($(formElement).valid()) {
-            $.ajax({
-	            url: '/createFeature',
-	            data: $(formElement).serialize(),
-	            type: 'POST',
-	            success: function(response) {
-	                console.log(response);
-	            },
-	            error: function(error) {
-	                console.log(error);
-	            }
-	        });
+        	console.log(moment(this.target()));
+	        if (moment(this.target()) < moment()) {
+	        	$('#inputTargetDate').addClass('is-invalid');
+	        	console.log("Selected date is in the past");
+			} else {			
+	            $.ajax({
+		            url: '/createFeature',
+		            data: $(formElement).serialize(),
+		            type: 'POST',
+		            success: function(response) {
+		                window.location = "/";
+		            },
+		            error: function(error) {
+		                console.log(error);
+		            }
+		        });
+	        }
         }
     }
 };
-ko.applyBindings(FeatureviewModel);
+ko.applyBindings(createFeatureviewModel, document.getElementById("createFeature"));
