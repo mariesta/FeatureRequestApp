@@ -26,47 +26,46 @@
             <div class="form-group row">
               <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputTitle" placeholder="Feature Name">
+                <input type="text" class="form-control" id="inputTitle" placeholder="Feature Name" data-bind="value: name">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputDescription" placeholder="Feature Description">
+                <input type="text" class="form-control" id="inputDescription" placeholder="Feature Description" data-bind="value: description">
               </div>
             </div>
             <div class="form-group row">
               <label for="client" class="col-sm-2 col-form-label">Client</label>
               <div class="col-sm-10">
-                <select class="form-control" id="client">
-                  <option selected>Choose a client</option>
-                  <option value="1">Client A</option>
-                  <option value="2">Client B</option>
-                  <option value="3">Client C</option>
+                <select class="form-control" id="client" data-bind="
+                  options: clientValues,
+                  optionsText: 'name',
+                  optionsValue: 'id',
+                  value: selectedClient">
                 </select>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputPriority" class="col-sm-2 col-form-label">Client Priority</label>
               <div class="col-sm-10">
-                <input type="number" min="1" class="form-control" id="inputPriority" placeholder="Priority">
+                <input type="number" min="1" class="form-control" id="inputPriority" placeholder="Priority" data-bind="value: priority">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputTargetDate" class="col-sm-2 col-form-label">Target Date</label>
               <div class="col-sm-10">
-                <input type="date" class="form-control" id="inputTargetDate">
+                <input type="date" class="form-control" id="inputTargetDate" data-bind="value: target">
               </div>
             </div>
             <div class="form-group row">
               <label for="productArea" class="col-sm-2 col-form-label">Product Area</label>
               <div class="col-sm-10">
-                <select class="form-control" id="productArea">
-                  <option selected>Choose a specific area</option>
-                  <option value="policy">Policies</option>
-                  <option value="billing">Billing</option>
-                  <option value="claim">Claims</option>
-                  <option value="report">Reports</option>
+                <select class="form-control" id="productArea" data-bind="
+                  options: areaValues,
+                  optionsText: 'name',
+                  optionsValue: 'id',
+                  value: selectedArea">
                 </select>
               </div>
             </div>
@@ -84,12 +83,14 @@
       <p>&copy; Company 2018</p>
     </footer>
  
-    <!-- Optional JavaScript -->
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" crossorigin="anonymous"></script>
-    <script src="{{url_for('static', filename='index.js')}}"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- Optional JavaScript -->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
   </body>
 </html>
