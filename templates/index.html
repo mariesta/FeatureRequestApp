@@ -7,6 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+
 
     <link href="../static/style.css" rel="stylesheet">
 
@@ -16,65 +18,41 @@
   <body>
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="#">Feature Request App</a>
+      <a class="ml-auto" href="/createFeature">Add New</a>
     </nav>
 
-    <div class="container">
+    <div class="container" id="featureList">
       <div class="row">
         <div class="col-12">
-          <h1>Got an idea?</h1>
-          <form data-bind="submit: doSomething">
-            <div class="form-group row">
-              <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputTitle" placeholder="Feature Name" name="title" data-bind="value: name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputDescription" placeholder="Feature Description" name="description" data-bind="value: description">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="client" class="col-sm-2 col-form-label">Client</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="client" name="client" data-bind="
-                  options: clientValues,
-                  optionsText: 'name',
-                  optionsValue: 'id',
-                  value: selectedClient">
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPriority" class="col-sm-2 col-form-label">Client Priority</label>
-              <div class="col-sm-10">
-                <input type="number" min="1" class="form-control" id="inputPriority" placeholder="Priority" name="priority" data-bind="value: priority">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputTargetDate" class="col-sm-2 col-form-label">Target Date</label>
-              <div class="col-sm-10">
-                <input type="date" class="form-control" id="inputTargetDate" name="target" data-bind="value: target">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="productArea" class="col-sm-2 col-form-label">Product Area</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="productArea" name="area" data-bind="
-                  options: areaValues,
-                  optionsText: 'name',
-                  optionsValue: 'id',
-                  value: selectedArea">
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </div>
-          </form>
+          {% if features|length > 0 %}
+          <h1>Feature Submitted</h1>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Client</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Target Date</th>
+                <th scope="col">Product Area</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for feature in features %}
+                <tr>
+                  <td>{{ feature.title|e }}<br><small>{{ feature.description| e}}</small></td>
+                  <td>Client {{ feature.client|e }}</td>
+                  <td>{{ feature.priority|e }}</td>
+                  <td>{{ feature.target_date|e }}</td>
+                  <td>{{ feature.product_area|e }}</td>
+                  <td><i class="fas fa-trash-alt"></i></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <div>No feature has been submitted yet. Head over to Add New to submit a new one.</div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -91,6 +69,5 @@
 
         <!-- Optional JavaScript -->
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" crossorigin="anonymous"></script>
-    <script src="{{url_for('static', filename='index.js')}}"></script>
   </body>
 </html>
