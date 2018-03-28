@@ -20,7 +20,6 @@ var featureModel = {
     	// If the form data is valid, post the serialized form data to the web API.
         $(formElement).validate();
         if ($(formElement).valid()) {
-        	console.log(moment(this.target()));
 	        if (moment(this.target()) < moment()) {
 	        	$('#inputTargetDate').addClass('is-invalid');
 			} else {			
