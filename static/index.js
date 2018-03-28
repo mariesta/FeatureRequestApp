@@ -1,4 +1,4 @@
-var createFeatureviewModel = {
+var featureModel = {
     name : ko.observable(""),
     description : ko.observable(""),
     clientValues : [
@@ -16,14 +16,13 @@ var createFeatureviewModel = {
     	{name: "Reports", id: "Reports"}
     ],
     selectedArea : ko.observable('policy'),
-    doSomething : function(formElement) {
+    create : function(formElement) {
     	// If the form data is valid, post the serialized form data to the web API.
         $(formElement).validate();
         if ($(formElement).valid()) {
         	console.log(moment(this.target()));
 	        if (moment(this.target()) < moment()) {
 	        	$('#inputTargetDate').addClass('is-invalid');
-	        	console.log("Selected date is in the past");
 			} else {			
 	            $.ajax({
 		            url: '/createFeature',
@@ -38,6 +37,18 @@ var createFeatureviewModel = {
 		        });
 	        }
         }
+    },
+    deleteFeature: function(id, data, event) {
+    	$.ajax({
+            url: '/delete/'+ id,
+            type: 'DELETE',
+            success: function(response) {
+                window.location = "/";
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
     }
 };
-ko.applyBindings(createFeatureviewModel, document.getElementById("createFeature"));
+ko.applyBindings(featureModel, document.getElementById("createFeature"));

@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, json, redirect, url_for
+from flask import Flask, render_template, request, json, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://usr:pass@localhost/sqlalchemy'
 db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
 class Feature(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,16 +19,29 @@ class Feature(db.Model):
     def __repr__(self):
         return '<Feature %r>' % self.title
 
+class FeatureSchema(ma.Schema):
+    class Meta:
+        # Fields to expose
+        fields = ('title', 'description', 'priority', 'target_date', 'client', 'product_area')
+
+
+feature_schema = FeatureSchema()
+features_schema = FeatureSchema(many=True)
+
 db.create_all()
 db.session.commit()
 
 @app.route("/")
 def main():
     features = Feature.query.order_by('-id').all()
-    print(features)
-    for feature in features:
-        print(feature.title)
-    return render_template('index.html', features=features)
+    return render_template('listFeatures.html', features=features)
+
+# endpoint to show all features
+@app.route("/features", methods=["GET"])
+def get_features():
+    features = Feature.query.order_by('-id').all()
+    result = features_schema.dump(features)
+    return jsonify(result)
 
 @app.route('/createFeature', methods=['GET', 'POST'])
 def createFeature():
@@ -67,6 +82,17 @@ def createFeature():
             return json.dumps({'html':'<span>Enter the required fields</span>'})
     elif request.method == 'GET':
         return render_template('createFeature.html')
+
+@app.route('/delete/<int:feature_id>', methods=['GET', 'DELETE'])
+def deleteFeature(feature_id):
+    if request.method == 'DELETE':
+        if feature_id:
+            feature_to_delete = Feature.query.get(feature_id)
+            db.session.delete(feature_to_delete)
+            db.session.commit()
+            return json.dumps({'html':'<span>All good</span>'})
+        else:
+            return json.dumps({'html':'<span>Enter the required fields</span>'})
 
 if __name__ == "__main__":
     app.run()

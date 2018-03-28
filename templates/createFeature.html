@@ -7,6 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+
 
     <link href="../static/style.css" rel="stylesheet">
 
@@ -22,70 +24,71 @@
     <div class="container" id="createFeature">
       <div class="row">
         <div class="col-12">
-          <h1>Got an idea?</h1>
-          <form data-bind="submit: doSomething">
-            <div class="form-group row">
-              <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputTitle" placeholder="Feature Name" name="title" data-bind="value: name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputDescription" placeholder="Feature Description" name="description" data-bind="value: description">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="client" class="col-sm-2 col-form-label">Client</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="client" name="client" data-bind="
-                  options: clientValues,
-                  optionsText: 'name',
-                  optionsValue: 'id',
-                  value: selectedClient">
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPriority" class="col-sm-2 col-form-label">Client Priority</label>
-              <div class="col-sm-10">
-                <input type="number" min="1" class="form-control" id="inputPriority" placeholder="Priority" name="priority" data-bind="value: priority">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputTargetDate" class="col-sm-2 col-form-label">Target Date</label>
-              <div class="col-sm-10">
-                <input type="date" class="form-control" id="inputTargetDate" name="target" data-bind="value: target">
-                <div id="inputTargetDateFeedback" class="invalid-feedback">
-                  Date cannot be set in the past.
+          <h3 class="py-4">Got an idea?</h3>
+            <form data-bind="submit: create">
+              <div class="form-group row">
+                <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputTitle" placeholder="Feature Name" name="title" data-bind="value: name">
                 </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="productArea" class="col-sm-2 col-form-label">Product Area</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="productArea" name="area" data-bind="
-                  options: areaValues,
-                  optionsText: 'name',
-                  optionsValue: 'id',
-                  value: selectedArea">
-                </select>
+              <div class="form-group row">
+                <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputDescription" placeholder="Feature Description" name="description" data-bind="value: description">
+                </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="form-group row">
+                <label for="client" class="col-sm-2 col-form-label">Client</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="client" name="client" data-bind="
+                    options: clientValues,
+                    optionsText: 'name',
+                    optionsValue: 'id',
+                    value: selectedClient">
+                  </select>
+                </div>
               </div>
-            </div>
-          </form>
+              <div class="form-group row">
+                <label for="inputPriority" class="col-sm-2 col-form-label">Client Priority</label>
+                <div class="col-sm-10">
+                  <input type="number" min="1" class="form-control" id="inputPriority" placeholder="Priority" name="priority" data-bind="value: priority">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputTargetDate" class="col-sm-2 col-form-label">Target Date</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control" id="inputTargetDate" name="target" data-bind="value: target">
+                  <div id="inputTargetDateFeedback" class="invalid-feedback">
+                    Date cannot be set in the past.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="productArea" class="col-sm-2 col-form-label">Product Area</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="productArea" name="area" data-bind="
+                    options: areaValues,
+                    optionsText: 'name',
+                    optionsValue: 'id',
+                    value: selectedArea">
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12 text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
         </div>
       </div>
     </div>
 
     <footer class="footer">
-      <p>&copy; Company 2018</p>
+      <p class="ml-3">&copy; Marie Starck 2018</p>
     </footer>
+ 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>

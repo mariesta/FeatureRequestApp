@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
 
-
     <link href="../static/style.css" rel="stylesheet">
 
     <title>Feature Request App</title>
@@ -25,40 +24,40 @@
       <div class="row">
         <div class="col-12">
           {% if features|length > 0 %}
-          <h1>Feature Submitted</h1>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Client</th>
-                <th scope="col">Priority</th>
-                <th scope="col">Target Date</th>
-                <th scope="col">Product Area</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for feature in features %}
+            <h3 class="py-4">Feature Submitted</h3>
+            <table class="table table-hover">
+              <thead>
                 <tr>
-                  <td>{{ feature.title|e }}<br><small>{{ feature.description| e}}</small></td>
-                  <td>Client {{ feature.client|e }}</td>
-                  <td>{{ feature.priority|e }}</td>
-                  <td>{{ feature.target_date|e }}</td>
-                  <td>{{ feature.product_area|e }}</td>
-                  <td><i class="fas fa-trash-alt"></i></td>
+                  <th scope="col">Title</th>
+                  <th scope="col">Client</th>
+                  <th scope="col">Priority</th>
+                  <th scope="col">Target Date</th>
+                  <th scope="col">Product Area</th>
+                  <th scope="col"></th>
                 </tr>
-                {% endfor %}
-            </tbody>
-          </table>
-          {% else %}
-          <div>No feature has been submitted yet. Head over to Add New to submit a new one.</div>
+              </thead>
+              <tbody>
+                  {% for feature in features %}
+                  <tr>
+                    <td>{{ feature.title|e }}<br><small>{{ feature.description| e}}</small></td>
+                    <td>Client {{ feature.client|e }}</td>
+                    <td>{{ feature.priority|e }}</td>
+                    <td>{{ feature.target_date|e }}</td>
+                    <td>{{ feature.product_area|e }}</td>
+                    <td><a class="clickable-icon" data-bind="click: function(data, event) { deleteFeature({{feature.id}}, data, event) }"><i class="fas fa-trash-alt"></i></a></td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <div>No feature has been submitted yet. Head over to Add New to submit a new one.</div>
           {% endif %}
         </div>
       </div>
     </div>
 
     <footer class="footer">
-      <p>&copy; Company 2018</p>
+      <p class="ml-3">&copy; Marie Starck 2018</p>
     </footer>
  
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -69,5 +68,7 @@
 
         <!-- Optional JavaScript -->
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='moment.min.js')}}"></script>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
   </body>
 </html>
