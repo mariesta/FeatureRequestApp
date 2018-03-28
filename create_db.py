@@ -1,4 +1,4 @@
-from app import db, Feature
+from application import db, Feature
 
 db.create_all()
 
