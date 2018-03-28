@@ -15,12 +15,12 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav role="navigation" class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="#">Feature Request App</a>
       <a class="ml-auto" href="/createFeature">Add New</a>
     </nav>
 
-    <div class="container" id="featureList">
+    <main role="main" class="container" id="featureList">
       <div class="row">
         <div class="col-12">
           {% if features|length > 0 %}
@@ -54,9 +54,9 @@
           {% endif %}
         </div>
       </div>
-    </div>
+    </main>
 
-    <footer class="footer">
+    <footer role="contentinfo" class="footer">
       <p class="ml-3">&copy; Marie Starck 2018</p>
     </footer>
  
