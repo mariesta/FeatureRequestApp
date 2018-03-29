@@ -45,9 +45,11 @@ You can then add feature through this page:
 <img src="screenshots/feature-add.png" width="550">
 
 This page also includes validation:
+<br>
 <img src="screenshots/validation.png" width="550">
 
 If all goes well, it populate the list page:
+<br>
 <img src="screenshots/feature-list.png" width="550">
 
 Have fun!
